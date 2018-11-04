@@ -31,10 +31,16 @@ std::string hasData(std::string s) {
 int main()
 {
   uWS::Hub h;
+  #define KP_PARAM 0.03
+  #define KI_PARAM 0.03
+  #define KD_PARAM 0.03
+  #define P_FLAG true
+  #define I_FLAG true
+  #define D_FLAG true
 
   PID pid;
   // TODO: Initialize the pid variable.
-
+  pid.Init(KP_PARAM, KI_PARAM, KD_PARAM, P_FLAG, I_FLAG, D_FLAG);
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
@@ -58,6 +64,9 @@ int main()
           * another PID controller to control the speed!
           */
           
+          // The simulator provides the CTE and velocity (mph) to compute the steering angle
+          pid.UpdateError(cte);
+          steer_value = pid.TotalError();
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 

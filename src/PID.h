@@ -17,6 +17,14 @@ public:
   double Ki;
   double Kd;
 
+  // component switches
+  bool use_p;
+  bool use_i;
+  bool use_d;
+
+  // prev_cte
+  double prev_cte;
+  double int_cte;
   /*
   * Constructor
   */
@@ -30,7 +38,7 @@ public:
   /*
   * Initialize PID.
   */
-  void Init(double Kp, double Ki, double Kd);
+  void Init(double Kp, double Ki, double Kd, bool use_p, bool use_i, bool use_d);
 
   /*
   * Update the PID error variables given cross track error.
