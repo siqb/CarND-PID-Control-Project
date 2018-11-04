@@ -28,6 +28,8 @@ std::string hasData(std::string s) {
   return "";
 }
 
+bool fresh_start = true;
+
 int main()
 {
   uWS::Hub h;
@@ -102,6 +104,11 @@ int main()
 
   h.onConnection([&h](uWS::WebSocket<uWS::SERVER> ws, uWS::HttpRequest req) {
     std::cout << "Connected!!!" << std::endl;
+    if (fresh_start){
+        std::string msg = "42[\"reset\",{}]";
+        ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
+        fresh_start = false;
+    }    
   });
 
   h.onDisconnection([&h](uWS::WebSocket<uWS::SERVER> ws, int code, char *message, size_t length) {
