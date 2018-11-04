@@ -33,13 +33,12 @@ bool fresh_start = true;
 int main()
 {
   uWS::Hub h;
-  #define KP_PARAM 0.03
-  #define KI_PARAM 0.03
-  #define KD_PARAM 0.03
+  #define KP_PARAM 0.05
+  #define KI_PARAM 0.001
+  #define KD_PARAM 0.8
   #define P_FLAG true
-  #define I_FLAG true
-  #define D_FLAG true
-
+  #define I_FLAG true 
+  #define D_FLAG true 
   PID pid;
   // TODO: Initialize the pid variable.
   pid.Init(KP_PARAM, KI_PARAM, KD_PARAM, P_FLAG, I_FLAG, D_FLAG);
