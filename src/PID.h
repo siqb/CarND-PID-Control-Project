@@ -1,6 +1,6 @@
 #ifndef PID_H
 #define PID_H
-
+#include <cmath>
 class PID {
 public:
   /*
@@ -25,6 +25,11 @@ public:
   // prev_cte
   double prev_cte;
   double int_cte;
+  double * Kx_ptr[3];
+  double dp[3];
+  double best_cte;
+  bool reduced_dp[3];
+  bool first_iter;
   /*
   * Constructor
   */
