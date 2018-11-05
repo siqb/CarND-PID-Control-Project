@@ -33,15 +33,15 @@ bool fresh_start = true;
 int main()
 {
   uWS::Hub h;
-  #define KP_PARAM 0.05
-  #define KI_PARAM 0.001
-  #define KD_PARAM 0.8
+  #define KP_INIT 0.05
+  #define KI_INIT 0.001
+  #define KD_INIT 0.8
   #define P_FLAG true
   #define I_FLAG true 
   #define D_FLAG true 
   PID pid;
   // TODO: Initialize the pid variable.
-  pid.Init(KP_PARAM, KI_PARAM, KD_PARAM, P_FLAG, I_FLAG, D_FLAG);
+  pid.Init(KP_INIT, KI_INIT, KD_INIT, P_FLAG, I_FLAG, D_FLAG);
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
