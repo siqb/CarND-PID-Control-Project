@@ -21,6 +21,8 @@ public:
   bool use_p;
   bool use_i;
   bool use_d;
+  bool use_twiddle;
+  int steps;
 
   // prev_cte
   double prev_cte;
@@ -43,7 +45,7 @@ public:
   /*
   * Initialize PID.
   */
-  void Init(double Kp, double Ki, double Kd, bool use_p, bool use_i, bool use_d);
+  void Init(double Kp, double Ki, double Kd, bool use_p, bool use_i, bool use_d, bool use_twiddle);
 
   /*
   * Update the PID error variables given cross track error.
