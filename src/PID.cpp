@@ -11,10 +11,9 @@ PID::PID() {}
 PID::~PID() {}
 
 void PID::Init(double Kp_init, double Ki_init, double Kd_init, bool use_p, bool use_i, bool use_d, bool use_twiddle) {
-void PID::Init(double Kp_init, double Ki_init, double Kd_init, bool use_p, bool use_i, bool use_d) {
-    PID::Kp = Kp_init;
-    PID::Ki = Ki_init;
-    PID::Kd = Kd_init;
+    Kp = Kp_init;
+    Ki = Ki_init;
+    Kd = Kd_init;
     PID::use_p = use_p;
     PID::use_i = use_i;
     PID::use_d = use_d;
