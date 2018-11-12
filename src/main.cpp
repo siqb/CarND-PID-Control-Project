@@ -58,6 +58,7 @@ int main()
           double speed = std::stod(j[1]["speed"].get<std::string>());
           double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
+          double throttle_value;
           /*
           * TODO: Calcuate steering value here, remember the steering value is
           * [-1, 1].
@@ -72,10 +73,11 @@ int main()
           std::cout << "CTE: " << cte << " Steering Value: ";
           std::cout << " Best CTE: " << pid.best_cte << std::endl;
           std::cout << "Kp: " << pid.Kp << " Ki: " << pid.Ki <<" Kd: "<<pid.Kd << std::endl;
+          throttle_value = 0.3;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
-          msgJson["throttle"] = 0.3;
+          msgJson["throttle"] = throttle_value;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
