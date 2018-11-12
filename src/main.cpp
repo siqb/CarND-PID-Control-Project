@@ -33,9 +33,12 @@ bool fresh_start = true;
 int main()
 {
   uWS::Hub h;
-  #define KP_INIT 0.05
-  #define KI_INIT 0.001
-  #define KD_INIT 0.8
+  //#define KP_INIT 0.05
+  //#define KI_INIT 0.001
+  //#define KD_INIT 0.8
+  #define KP_INIT 0.08
+  #define KI_INIT 0.0009
+  #define KD_INIT 3.8 
   #define P_FLAG true
   #define I_FLAG true 
   #define D_FLAG true 
