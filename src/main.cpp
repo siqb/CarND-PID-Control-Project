@@ -59,6 +59,7 @@ int main()
           double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
           double throttle_value;
+          double target_speed;
           /*
           * TODO: Calcuate steering value here, remember the steering value is
           * [-1, 1].
@@ -73,7 +74,31 @@ int main()
           std::cout << "CTE: " << cte << " Steering Value: ";
           std::cout << " Best CTE: " << pid.best_cte << std::endl;
           std::cout << "Kp: " << pid.Kp << " Ki: " << pid.Ki <<" Kd: "<<pid.Kd << std::endl;
+
+          //if (fabs(cte)>0.03){
+
+          //  target_speed = speed*0.75-cte*10;
+          //  throttle_value = target_speed/100;
+          //  if (speed < 10.0 && throttle_value < 0.0){
+
+          //    throttle_value *= -1.0;
+          //  }
+          //}
+          //else{ 
+          //  throttle_value = 0.3;
+          //}
+
           throttle_value = 0.3;
+
+          //if (fabs(cte) > 1.5){
+
+          //  if(steer_value <0.0){
+          //      steer_value+=0.5;
+          //  }
+          //  else if(steer_value > 0.0){
+          //      steer_value-=0.5;
+          //  }
+          //}
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
