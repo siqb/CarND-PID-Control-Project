@@ -17,7 +17,9 @@ I represents the amount of steering correction that is done in proporition to th
 I used a combination of manual tuning and the twiddle algorithm to tune the final parameters. Through experimentation, I chose initial Kp, Ki, and Kd values of 
 
   #define KP_INIT 0.08
+  
   #define KI_INIT 0.0009
+  
   #define KD_INIT 3.8 
 
 P was tuned by seeing what value made the car stay towards the center on the intial straight potion of the track. If the car was swinging too much, it meant that it was overcorrecting for small errors and that Kp was too big. If it was too small, the car would undercorrect for error and end up off road even in the straight segments. 
