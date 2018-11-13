@@ -2,6 +2,32 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+## Effects of P, I, and D components
+
+In this project, I implemented a PID controller for steering. 
+
+P represents the amount of steering correction that is done in proportion to the amount of error from the refernce trajectory. In other words, the farther the vehicle is from the desired path, the harder the PID controller will pull the steering wheel in the other direction. This works very well to get the car back on track when it deviates from the path on straight parts of the track.
+
+D represents the amount of steering correction that is done in proportion to the rate of change that the vehcile deviated from its reference trajectory. In other words, when the car *suddenly* finds itself off its desired path (like at a curve in the road), the PID controller has the pull the sterring wheel in the correct direction even harder than in the P step above! 
+
+I represents the amount of steering correction that is done in proporition to the overall bias that the vehicle maintains over time. Bias can come from imperfectly tuned P and D components. It can also come from things like wind and other constant forces that our motion model does not account for.
+
+## How final hyperparameters were chosen
+
+I used a combination of manual tuning and the twiddle algorithm to tune the final parameters. Through experimentation, I chose initial Kp, Ki, and Kd values of 
+
+  #define KP_INIT 0.08
+  #define KI_INIT 0.0009
+  #define KD_INIT 3.8 
+
+P was tuned by seeing what value made the car stay towards the center on the intial straight potion of the track. If the car was swinging too much, it meant that it was overcorrecting for small errors and that Kp was too big. If it was too small, the car would undercorrect for error and end up off road even in the straight segments. 
+
+I found that the most important parameter was KD. It was very hard to get around the sharp curves without being very aggressive with this coefficient. I was surprised how much I had to increase it to be able to react to the curves fast enough!
+
+The hardest parameter to understand the impact of is KI. The reason is that bias is a long term integral and as such, its hard to understand what kind of impact it's having on the car's path by tweaking it by small amounts. Therefore, I focused mainly on optimizing P and D.
+
+Then, the twiddle algorithm converged on final values from here. I'm not sure if I implemented twiddle correctly though. I did find that it converged on final values very fast. As such, it was very important to select correct initial values. Doesn't that defeat the purpose of twiddle? In any case, I was able to see how twiddle adjusts the values of the coefficients based on if they are having a positive or negative impact on the cross track error.
+
 
 ## Dependencies
 
